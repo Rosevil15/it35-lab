@@ -21,7 +21,7 @@ import {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <IonButton routerLink="/it35-lab/app/home/details" expand="full">
+          <IonButton routerLink="/IT35CLab/app/home/details" expand="full">
               Details
           </IonButton>
         </IonContent>
