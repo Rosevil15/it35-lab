@@ -8,7 +8,8 @@ import {
     IonMenu, 
     IonMenuButton, 
     IonMenuToggle, 
-    IonPage, 
+    IonPage,
+    IonRouterLink, 
     IonRouterOutlet, 
     IonSplitPane, 
     IonTitle, 
@@ -32,11 +33,10 @@ const Menu: React.FC = () => {
                 <IonMenu contentId="main">
                     <IonHeader>
                         <IonToolbar>
-                            <IonTitle>
-                                Menu
-                            </IonTitle>
+                            <IonTitle> Menu</IonTitle>
                         </IonToolbar>
                     </IonHeader>
+
                     <IonContent>
                         {path.map((item, index) => (
                             <IonMenuToggle key={index}>
@@ -44,29 +44,29 @@ const Menu: React.FC = () => {
                                     <IonIcon icon={item.icon} slot="start"></IonIcon>
                                     {item.name}
                                 </IonItem>
+
                             </IonMenuToggle>
                         ))}
 
-                        {/* Logout Button */}
-                        <IonButton routerLink="/it35-lab" routerDirection="back" expand="full">
-                            <IonIcon icon={logOutOutline} slot="start"> </IonIcon>
-                            Logout
-                        </IonButton>
-                    </IonContent>
-                </IonMenu>
+<IonButton routerLink="/it35-lab" routerDirection= "back" expand="full">
+              <IonIcon icon={logOutOutline} slot="start"></IonIcon>
+              Logout
+          </IonButton>
 
-                <IonRouterOutlet id="main">
-                    <Route exact path="/it35-lab/app/home" component={Home} />
-                    <Route exact path="/it35-lab/app/home/details" component={Details} />
-                    <Route exact path="/it35-lab/app/about" component={About} />
+        </IonContent>
+        </IonMenu>
 
-                    <Route exact path="/it35-lab/app">
-                        <Redirect to="/it35lab/app/home" />
-                    </Route>
-                </IonRouterOutlet>
-            </IonSplitPane>
-        </IonPage>
+        <IonRouterOutlet id="main">
+          <Route exact path="/it35-lab/app/home" component={Home} />
+          <Route exact path="/it35-lab/app/about" component={About} />
+          <Route exact path="/it35-lab/app/details" component={Details} />
+          <Route exact path="/it35-lab/app">
+                <Redirect to="/it35-lab/app/home"/>
+          </Route>
+        </IonRouterOutlet>
+        </IonSplitPane>
+      </IonPage>
     );
-};
-
-export default Menu;
+  };
+  
+  export default Menu;
