@@ -15,9 +15,9 @@ import {
         <IonHeader>
           <IonToolbar color="primary">
             <IonButtons slot='start'>
-                <IonBackButton defaultHref='/IT35CLab/app/home'></IonBackButton>
+                <IonBackButton defaultHref='/it35-lab/app/home'></IonBackButton>
             </IonButtons>
-            <IonTitle>Home Details</IonTitle>
+            <IonTitle>Details</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent className='ion-padding'>
