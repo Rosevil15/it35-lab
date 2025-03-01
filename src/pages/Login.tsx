@@ -30,7 +30,7 @@ const Login: React.FC = () => {
         <IonList>
    
         <IonItem>
-            <IonInput label="Email" type="email" placeholder="email@domain.com"></IonInput>
+            <IonInput label="Email" type="email" placeholder="Input Email"></IonInput>
           </IonItem>
 
           <IonItem>
