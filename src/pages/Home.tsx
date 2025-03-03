@@ -16,9 +16,10 @@ import {
   IonToolbar 
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route, RouteComponentProps, StaticContext } from 'react-router';
-import Favorites from './home-tabs/Favorite';
 import { bookOutline, search, star } from 'ionicons/icons';
+import { Route, Redirect } from 'react-router';
+
+import Favorites from './home-tabs/Favorite';
 import Search from './home-tabs/Search';
 import Feed from './home-tabs/Feed';
 
@@ -44,6 +45,7 @@ const Home: React.FC = () => {
           <Route exact path="/it35-lab/app/home/feed" render={Feed} />
           <Route exact path="/it35-lab/app/home/search" render={Search} />
           <Route exact path="/it35-lab/app/home/favorites" render={Favorites} />
+
           <Route exact path="/it35-lab/app/home">
             <Redirect to="/it35-lab/app/home/feed" />
           </Route>
