@@ -1,19 +1,25 @@
 import { 
+  IonAvatar,
+  IonButton,
     IonButtons,
+      IonCard,
+      IonCardContent,
+      IonCardHeader,
+      IonCardSubtitle,
+      IonCardTitle,
       IonContent, 
       IonHeader, 
-      IonInput, 
+      IonIcon, 
       IonItem, 
       IonLabel, 
       IonList, 
       IonMenuButton, 
-      IonNote, 
       IonPage, 
-      IonTextarea, 
+      IonText, 
       IonTitle, 
-      IonToggle, 
       IonToolbar 
   } from '@ionic/react';
+import { chatbubbleEllipsesOutline, ellipsisHorizontal, heart, paperPlaneOutline } from 'ionicons/icons';
   
   const Feed: React.FC = () => {
     return (
@@ -26,40 +32,87 @@ import {
             <IonTitle>Feed</IonTitle>
           </IonToolbar>
         </IonHeader>
+
         <IonContent fullscreen>
-        <>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>it35 sample</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent color="light">
-        <IonList inset={true}>
-          <IonItem>
-            <IonInput label="First Name"></IonInput>
-          </IonItem>
-          <IonItem>
-            <IonInput label="Last Name"></IonInput>
-          </IonItem>
-          <IonItem>
-            <IonToggle>
-              <IonLabel>Allow Notifications</IonLabel>
-              <IonNote color="medium">Unsubscribe at any time</IonNote>
-            </IonToggle>
-          </IonItem>
-        </IonList>
+        <IonList lines='none'>
+        <IonItem className='ion-margin-top'>
+            <IonAvatar slot='start'>
+                <img src="https://storage.googleapis.com/pod_public/1300/207360.jpg"  alt='avatar' />
+            </IonAvatar>
+            <IonLabel>
+                <IonText>
+                    Naruto
+                </IonText>
+                <br />
+                <IonText>
+                    8 min ago
+                </IonText>
+            </IonLabel>
+        <IonIcon slot='end' icon={ellipsisHorizontal} />
+    </IonItem>
+    </IonList>
+          <IonCard>
+          <img alt="Sample" src="https://storage.googleapis.com/pod_public/1300/207360.jpg" />
+      <IonCardHeader>
+        <IonCardTitle>I will become HOKAGE no matter what!!</IonCardTitle>
+      </IonCardHeader>
+      <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+      
+      <IonButton fill="clear">
+          <IonIcon slot='start' icon={heart} />
+          671
+      </IonButton>
 
-        <IonList inset={true}>
-          <IonItem>
-            <IonTextarea label="Comments" label-placement="floating" rows={5}></IonTextarea>
-          </IonItem>
-        </IonList>
+      <IonButton fill="clear" color='medium'>
+        <IonIcon slot='start' icon={chatbubbleEllipsesOutline} />
+        551
+      </IonButton>
 
-        <IonNote color="medium" class="ion-margin-horizontal">
-          Your comments will be kept anonymous and will only be used to improve the reliability of our products.
-        </IonNote>
-      </IonContent>
-    </>
+      <IonButton fill='clear' color='medium'>
+            <IonIcon slot='start' icon={paperPlaneOutline} />
+        105
+        </IonButton>
+    </IonCard>
+
+    <IonList lines='none'>
+        <IonItem className='ion-margin-top'>
+            <IonAvatar slot='start'>
+                <img src="https://tse1.mm.bing.net/th?id=OIP.rX298mOw30d82kcPsL9cxgHaEK&pid=Api&P=0&h=180qzytdg8xliuaelun.jpg"  alt='avatar' />
+            </IonAvatar>
+            <IonLabel>
+                <IonText>
+                    Monkey D. Luffy
+                </IonText>
+                <br />
+                <IonText>
+                    20 min ago
+                </IonText>
+            </IonLabel>
+        <IonIcon slot='end' icon={ellipsisHorizontal} />
+    </IonItem>
+    </IonList>
+    <IonCard>
+          <img alt="Sample" src="https://tse1.mm.bing.net/th?id=OIP.rX298mOw30d82kcPsL9cxgHaEK&pid=Api&P=0&h=180qzytdg8xliuaelun.jpg" />
+      <IonCardHeader>
+        <IonCardTitle>I will become the King of the Pirate</IonCardTitle>
+      </IonCardHeader>
+      <IonCardContent>Here's a small text description for the card content. Nothing more, nothing less.</IonCardContent>
+      
+      <IonButton fill="clear">
+          <IonIcon slot='start' icon={heart} />
+          525
+      </IonButton>
+
+      <IonButton fill="clear" color='medium'>
+        <IonIcon slot='start' icon={chatbubbleEllipsesOutline} />
+        650
+      </IonButton>
+
+      <IonButton fill='clear' color='medium'>
+            <IonIcon slot='start' icon={paperPlaneOutline} />
+        150
+        </IonButton>
+    </IonCard>
         </IonContent>
       </IonPage>
     );
