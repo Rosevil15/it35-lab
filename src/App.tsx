@@ -34,7 +34,6 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import Login from './pages/Login';
 import Menu from './pages/Menu';
-
 setupIonicReact();
 
 const App: React.FC = () => (
