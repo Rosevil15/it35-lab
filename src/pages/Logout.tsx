@@ -14,9 +14,12 @@ const Logout: React.FC = () => {
     const navigation = useIonRouter();
 
     const doLogout = () => {
-        navigation.push('/login', 'back', 'replace');
-    }
-
+        localStorage.removeItem("registeredEmail");
+        localStorage.removeItem("registeredPassword");
+        navigation.push('/it35-lab/login', 'back');
+    };
+    
+    
     return (
         <IonPage>
             <IonHeader>
@@ -28,9 +31,7 @@ const Logout: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <IonButton onClick={doLogout} expand="full">
-                    Logout
-                </IonButton>
+<IonButton onClick={doLogout}>Logout</IonButton>
             </IonContent>
         </IonPage>
     );
