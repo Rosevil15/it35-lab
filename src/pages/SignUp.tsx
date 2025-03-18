@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
+  IonAlert,
   IonButton, 
   IonContent, 
   IonHeader, 
@@ -16,20 +17,30 @@ const SignUp: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
+  useEffect(() => {
+    console.log("SignUp component mounted");
+  }, []);
 
   const handleSignUp = () => {
+    console.log("SignUp button clicked with:", email, password, confirmPassword);
+
     if (!email || !password || !confirmPassword) {
-      alert('Please fill in all fields.');
+      setAlertMessage('Please fill in all fields.');
+      setShowAlert(true);
       return;
     }
-    
+
     if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+      setAlertMessage('Passwords do not match!');
+      setShowAlert(true);
       return;
     }
-    
+
     console.log('Sign up with:', email, password);
-    navigation.push('/register');
+    navigation.push('/it35-lab/register'); // ✅ Corrected navigation path
   };
 
   return (
@@ -71,7 +82,17 @@ const SignUp: React.FC = () => {
           />
         </IonItem>
         <IonButton onClick={handleSignUp} expand='full'>Register</IonButton>
-        <IonButton fill='clear' onClick={() => navigation.push('/login')} expand='full'>Back to Login</IonButton>
+        <IonButton fill='clear' onClick={() => navigation.push('/it35-lab/login')} expand='full'>
+          Back to Login
+        </IonButton>
+
+        <IonAlert
+          isOpen={showAlert}
+          onDidDismiss={() => setShowAlert(false)}
+          header={'Sign Up Error'}
+          message={alertMessage}
+          buttons={['OK']}
+        />
       </IonContent>
     </IonPage>
   );

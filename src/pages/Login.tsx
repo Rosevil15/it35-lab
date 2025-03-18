@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonAlert,
   IonAvatar, 
@@ -23,7 +23,13 @@ const Login: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
+  // ✅ Corrected useEffect placement
+  useEffect(() => {
+    console.log("Login component mounted");
+  }, []);
+
   const handleLogin = () => {
+    console.log("Login button clicked with:", email, password);
     if (!email || !password) {
       setAlertMessage('Please fill in all fields.');
       setShowAlert(true);
@@ -32,7 +38,8 @@ const Login: React.FC = () => {
     
     // Mock authentication logic
     if (email === 'test@example.com' && password === 'password123') {
-      navigation.push('/it35-lab/app', 'forward', 'replace');
+      console.log("Login successful, navigating...");
+      navigation.push('/it35-lab/app', 'forward', 'replace'); // ✅ Ensure this is correct in App.tsx
     } else {
       setAlertMessage('Invalid email or password.');
       setShowAlert(true);
@@ -80,8 +87,8 @@ const Login: React.FC = () => {
           <IonInputPasswordToggle slot='end' />
         </IonItem>
         <IonButton onClick={handleLogin} expand='full'>Login</IonButton>
-        <IonButton fill='clear' onClick={() => navigation.push('/signup')} expand='full'>
-        Sign Up
+        <IonButton fill='clear' onClick={() => navigation.push('/it35-lab/signup')} expand='full'>
+          Sign Up
         </IonButton>
         <IonAlert
           isOpen={showAlert}

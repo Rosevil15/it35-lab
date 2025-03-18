@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   IonAlert,
   IonButton,
@@ -21,7 +21,13 @@ const Register: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
+  useEffect(() => {
+    console.log("Register component mounted");
+  }, []);
+
   const handleRegister = () => {
+    console.log("Register button clicked with:", email, password, confirmPassword);
+
     if (!email || !password || !confirmPassword) {
       setAlertMessage('Please fill in all fields.');
       setShowAlert(true);
@@ -40,7 +46,7 @@ const Register: React.FC = () => {
     setShowAlert(true);
 
     setTimeout(() => {
-      navigation.push('/login'); // Redirect to Login Page
+      navigation.push('/it35-lab/login'); // ✅ Corrected redirection to login
     }, 1500);
   };
 
@@ -85,7 +91,9 @@ const Register: React.FC = () => {
           <IonInputPasswordToggle slot="end" />
         </IonItem>
         <IonButton onClick={handleRegister} expand="full">Register</IonButton>
-        <IonButton fill="clear" onClick={() => navigation.push('/login')} expand="full">Back to Login</IonButton>
+        <IonButton fill="clear" onClick={() => navigation.push('/it35-lab/login')} expand="full">
+          Back to Login
+        </IonButton>
         <IonAlert
           isOpen={showAlert}
           onDidDismiss={() => setShowAlert(false)}
