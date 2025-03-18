@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import {
   IonAlert,
   IonAvatar, 
@@ -23,11 +23,6 @@ const Login: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
-  // ✅ Corrected useEffect placement
-  useEffect(() => {
-    console.log("Login component mounted");
-  }, []);
-
   const handleLogin = () => {
     console.log("Login button clicked with:", email, password);
     if (!email || !password) {
@@ -35,11 +30,13 @@ const Login: React.FC = () => {
       setShowAlert(true);
       return;
     }
+    const storedEmail = localStorage.getItem("registeredEmail");
+    const storedPassword = localStorage.getItem("registeredPassword");
     
     // Mock authentication logic
-    if (email === 'test@example.com' && password === 'password123') {
+    if (email === storedEmail && password === storedPassword) {
       console.log("Login successful, navigating...");
-      navigation.push('/it35-lab/app', 'forward', 'replace'); // ✅ Ensure this is correct in App.tsx
+      navigation.push('/it35-lab/app');
     } else {
       setAlertMessage('Invalid email or password.');
       setShowAlert(true);

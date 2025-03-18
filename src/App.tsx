@@ -26,8 +26,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/variables.css';
 import Login from './pages/Login';
 import Menu from './pages/Menu';
-import SignUp from './pages/SignUp'; // ✅ Fixed Import
-import Register from './pages/Register'; // ✅ Added Import
+import Register from './pages/Register';
 
 setupIonicReact();
 
@@ -35,11 +34,10 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/it35-lab/app" component={Login} />
-        <Route exact path="/it35-lab/signup" component={SignUp} /> {/* ✅ Fixed */}
-        <Route exact path="/it35-lab/register" component={Register} /> {/* ✅ Added */}
-        <Route exact path="/it35-lab/menu" component={Menu} />
-        <Redirect exact from="/" to="/it35-lab/app" />
+      <Route exact path="/it35-lab" render={() => <Redirect to="/it35-lab/app" />} />
+      <Route exact path="/it35-lab/login" component={Login} />
+        <Route exact path="/it35-lab/signup" component={Register} /> 
+        <Route path="/it35-lab/app" component={Menu} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

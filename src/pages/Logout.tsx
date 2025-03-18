@@ -10,7 +10,7 @@ import {
 } from '@ionic/react';
 import { useIonRouter } from '@ionic/react';
 
-const Template: React.FC = () => {
+const Logout: React.FC = () => {
     const navigation = useIonRouter();
 
     const doLogout = () => {
@@ -36,4 +36,4 @@ const Template: React.FC = () => {
     );
 };
 
-export default Template;
+export default Logout;

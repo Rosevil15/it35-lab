@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import {
   IonAlert,
   IonButton,
@@ -15,20 +15,17 @@ import {
 
 const Register: React.FC = () => {
   const navigation = useIonRouter();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
-  useEffect(() => {
-    console.log("Register component mounted");
-  }, []);
-
   const handleRegister = () => {
     console.log("Register button clicked with:", email, password, confirmPassword);
 
-    if (!email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword) {
       setAlertMessage('Please fill in all fields.');
       setShowAlert(true);
       return;
@@ -39,9 +36,10 @@ const Register: React.FC = () => {
       setShowAlert(true);
       return;
     }
-
+    localStorage.setItem("registeredEmail", email);
+    localStorage.setItem("registeredPassword", password);
     // Mock registration logic
-    console.log('User registered:', email, password);
+    
     setAlertMessage('Registration successful! Redirecting to login.');
     setShowAlert(true);
 
@@ -58,6 +56,17 @@ const Register: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
+      <IonItem>
+          <IonInput
+            label="Username"
+            labelPlacement="floating"
+            value={username}
+            onIonInput={(e) => setUsername(e.detail.value!)}
+            placeholder="Enter username"
+            type="text"
+          />
+        </IonItem>
+        
         <IonItem>
           <IonInput
             label="Email"
@@ -96,7 +105,7 @@ const Register: React.FC = () => {
         </IonButton>
         <IonAlert
           isOpen={showAlert}
-          onDidDismiss={() => setShowAlert(false)}
+          onDidDismiss={() => navigation.push('/it35-lab/login')}
           header={'Sign Up'}
           message={alertMessage}
           buttons={['OK']}
