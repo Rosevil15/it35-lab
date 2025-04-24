@@ -104,16 +104,8 @@ const FeedContainer = () => {
   };
 
   return (
-    <IonApp>
-      <IonPage>
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle style={{ fontFamily: 'Poppins', fontWeight: 600, fontSize: '1.5rem', color: 'var(--ion-color-primary)' }}>
-              Posts
-            </IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
+    <>
+      <IonContent>
           {user ? (
             <>
               <IonCard>
@@ -237,8 +229,8 @@ const FeedContainer = () => {
           message="Post updated successfully!"
           buttons={['OK']}
         />
-      </IonPage>
-    </IonApp>
+    </>
+
   );
 };
 
