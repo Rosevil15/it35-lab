@@ -105,98 +105,95 @@ const FeedContainer = () => {
 
   return (
     <>
-      <IonContent>
-          {user ? (
-            <>
-              <IonCard>
-                <IonCardHeader>
-                  <IonCardTitle style={{ fontFamily: 'Poppins', fontSize: '1.2rem', fontWeight: '500' }}>
-                    Create Post
-                  </IonCardTitle>
-                </IonCardHeader>
-                <IonCardContent>
-                  <IonInput
-                    value={postContent}
-                    onIonChange={e => setPostContent(e.detail.value!)}
-                    placeholder="Write a post..."
-                    style={{
-                      fontFamily: 'Poppins',
-                      fontSize: '1rem',
-                      border: '1px solid #ccc',
-                      borderRadius: '12px',
-                      padding: '12px',
-                      backgroundColor: '#fff',
-                      marginBottom: '10px'
-                    }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <IonButton
-                      onClick={createPost}
-                      color="primary"
-                      style={{
-                        fontFamily: 'Poppins',
-                        fontWeight: 500,
-                        fontSize: '0.95rem',
-                        borderRadius: '10px',
-                        padding: '8px 20px'
-                      }}
-                    >
-                      Post
-                    </IonButton>
-                  </div>
-                </IonCardContent>
-              </IonCard>
+      <IonContent
+  style={{
+    '--background': 'url(https://i.pinimg.com/originals/a3/1d/7f/a31d7f5c20b885859e84ceea2d71d7b6.gif)',  // Use the URL of your background image
+    backgroundSize: 'cover',  // Makes the image cover the entire area
+    backgroundPosition: 'center center',  // Centers the image
+    backgroundAttachment: 'fixed',  // Keeps the image fixed during scroll
+  }}
+>
+  {user ? (
+    <>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle style={{ fontFamily: 'Poppins', fontSize: '1.2rem', fontWeight: '500' }}>
+            Create Post
+          </IonCardTitle>
+        </IonCardHeader>
+        <IonCardContent>
+          <IonInput
+            value={postContent}
+            onIonChange={e => setPostContent(e.detail.value!)}
+            placeholder="Write a post..."
+            style={{
+              fontFamily: 'Poppins',
+                fontSize: '1rem',
+                border: '1px solid #ccc',
+                borderRadius: '12px',
+                padding: '12px',
+                marginBottom: '10px',
+                backgroundColor: 'transparent',
+            }}
+          />
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <IonButton
+              onClick={createPost}
+              color="primary"
+              style={{
+                fontFamily: 'Poppins',
+                fontWeight: 500,
+                fontSize: '0.95rem',
+                borderRadius: '10px',
+                padding: '8px 20px',
+                backgroundColor: 'transparent',
+              }}
+            >
+              Post
+            </IonButton>
+          </div>
+        </IonCardContent>
+      </IonCard>
 
-              {posts.map(post => (
-                <IonCard key={post.post_id} style={{ marginTop: '2rem' }}>
-                  <IonCardHeader>
-                    <IonRow>
-                      <IonCol size="1.85">
-                        <IonAvatar>
-                          <img alt={post.username} src={post.avatar_url} />
-                        </IonAvatar>
-                      </IonCol>
-                      <IonCol>
-                        <IonCardTitle style={{ fontFamily: 'Poppins', fontWeight: 600, fontSize: '1.1rem' }}>
-                          {post.username}
-                        </IonCardTitle>
-                        <IonCardSubtitle style={{ fontFamily: 'Poppins', fontSize: '0.85rem', color: '#777' }}>
-                          {new Date(post.post_created_at).toLocaleString()}
-                        </IonCardSubtitle>
-                      </IonCol>
-                      <IonCol size="auto">
-                        <IonButton fill="clear" onClick={(e) => setPopoverState({ open: true, event: e.nativeEvent, postId: post.post_id })}>
-                          <IonIcon color="secondary" icon={pencil} />
-                        </IonButton>
-                      </IonCol>
-                    </IonRow>
-                  </IonCardHeader>
+      {/* Your posts display */}
+      {posts.map(post => (
+        <IonCard key={post.post_id} style={{ marginTop: '2rem', backgroundColor: 'transparent', boxShadow: 'none' }}>
+          <IonCardHeader>
+            <IonRow>
+              <IonCol size="1.85">
+                <IonAvatar>
+                  <img alt={post.username} src={post.avatar_url} />
+                </IonAvatar>
+              </IonCol>
+              <IonCol>
+                <IonCardTitle style={{ fontFamily: 'Poppins', fontWeight: 600, fontSize: '1.1rem', color: '#ffffff' }}>
+                  {post.username}
+                </IonCardTitle>
+                <IonCardSubtitle style={{ fontFamily: 'Poppins', fontSize: '0.85rem', color: '#cccccc' }}>
+                  {new Date(post.post_created_at).toLocaleString()}
+                </IonCardSubtitle>
+              </IonCol>
+              <IonCol size="auto">
+                <IonButton fill="clear" onClick={(e) => setPopoverState({ open: true, event: e.nativeEvent, postId: post.post_id })}>
+                  <IonIcon color="secondary" icon={pencil} />
+                </IonButton>
+              </IonCol>
+            </IonRow>
+          </IonCardHeader>
 
-                  <IonCardContent>
-                    <IonText style={{ fontFamily: 'Poppins', fontSize: '1rem', lineHeight: '1.5', color: '#2e2e2e' }}>
-                      <p>{post.post_content}</p>
-                    </IonText>
-                  </IonCardContent>
+          <IonCardContent>
+            <IonText style={{ fontFamily: 'Poppins', fontSize: '1rem', lineHeight: '1.5', color: '#f0f0f0', backgroundColor: 'transparent' }}>
+              <p>{post.post_content}</p>
+            </IonText>
+          </IonCardContent>
+        </IonCard>
+      ))}
+    </>
+  ) : (
+    <IonLabel>Loading...</IonLabel>
+  )}
+</IonContent>
 
-                  <IonPopover
-                    isOpen={popoverState.open && popoverState.postId === post.post_id}
-                    event={popoverState.event}
-                    onDidDismiss={() => setPopoverState({ open: false, event: null, postId: null })}
-                  >
-                    <IonButton fill="clear" onClick={() => { startEditingPost(post); setPopoverState({ open: false, event: null, postId: null }); }}>
-                      Edit
-                    </IonButton>
-                    <IonButton fill="clear" color="danger" onClick={() => { deletePost(post.post_id); setPopoverState({ open: false, event: null, postId: null }); }}>
-                      Delete
-                    </IonButton>
-                  </IonPopover>
-                </IonCard>
-              ))}
-            </>
-          ) : (
-            <IonLabel>Loading...</IonLabel>
-          )}
-        </IonContent>
 
         <IonModal isOpen={isModalOpen} onDidDismiss={() => setIsModalOpen(false)}>
           <IonHeader>
@@ -212,7 +209,11 @@ const FeedContainer = () => {
               style={{
                 fontFamily: 'Poppins',
                 fontSize: '1rem',
-                padding: '1rem'
+                border: '1px solid #ccc',
+                borderRadius: '12px',
+                padding: '12px',
+                marginBottom: '10px',
+                backgroundColor: 'transparent',
               }}
             />
           </IonContent>
